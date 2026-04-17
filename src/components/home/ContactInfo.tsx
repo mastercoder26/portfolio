@@ -56,12 +56,14 @@ export default function ContactInfo() {
             style={{ x }}
             className="absolute left-[calc(100%-200px)] top-[calc(100%+65px)] sm:left-[calc(100%-400px)] sm:top-[calc(100%-75px)]"
           >
-            <RoundedButton
-              backgroundColor="secondary"
-              className=" absolute h-[100px] w-[100px] cursor-pointer items-center justify-center rounded-full bg-primary p-0 text-white sm:h-[200px] sm:w-[200px]"
-            >
-              <Link href={'/contact'}>Get in touch</Link>
-            </RoundedButton>
+            <Link href={'/contact'} prefetch={true}>
+              <RoundedButton
+                backgroundColor="secondary"
+                className=" absolute h-[100px] w-[100px] cursor-pointer items-center justify-center rounded-full bg-primary p-0 text-white sm:h-[200px] sm:w-[200px]"
+              >
+                Get in touch
+              </RoundedButton>
+            </Link>
           </motion.div>
         </div>
         <div className="mt-6 flex gap-5 sm:mx-[100px]">
