@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
-import ProjectHero from '@/app/projects/project/hero';
+import ProjectHero from '@/components/projects/project/Hero';
 import Image from 'next/image';
 import Picture1 from '../../../../public/images/bike.png';
 import Picture2 from '../../../../public/images/bike.png';

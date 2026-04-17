@@ -1,6 +1,6 @@
 'use client';
 
-import { type BlogPost } from '../types';
+import { type BlogPost } from '@/components/blog/types';
 import { ProjectCard } from '@/components/ui/ProjectCard';
 import { motion } from 'framer-motion';
 

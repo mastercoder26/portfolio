@@ -1,5 +1,5 @@
 'use client';
-import ProjectHero from '@/app/projects/project/hero';
+import ProjectHero from '@/components/projects/project/Hero';
 import PageScrollParallax from '@/components/pageScrollParallax';
 import Picture1 from '../../../../public/images/m31/controller.jpg';
 import Picture3 from '../../../../public/images/m31/gold.webp';

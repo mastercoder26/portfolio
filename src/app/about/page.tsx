@@ -9,7 +9,7 @@ import Layout from '@/components/layout';
 import AnimatedSection from '@/components/about/AnimatedSection';
 import TextReveal from '@/components/about/TextReveal';
 import JourneyTimeline from '@/components/about/JourneyTimeline';
-import SpotifyPlaylists from '@/app/about/spotifyPlaylists';
+import SpotifyPlaylists from '@/components/about/SpotifyPlaylists';
 import ContrastCursor from '@/components/animations/cursor/contrastCursor';
 import RoundedButton from '@/components/animations/roundedButton';
 import OpenSourceShowcase from '@/components/about/OpenSourceShowcase';

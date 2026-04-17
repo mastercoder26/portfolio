@@ -1,4 +1,4 @@
-import { blogPostSchema, type BlogPost } from './types';
+import { blogPostSchema, type BlogPost } from '@/components/blog/types';
 import { z } from 'zod';
 
 const MEDIUM_USERNAME = 'bettinasosarohl';

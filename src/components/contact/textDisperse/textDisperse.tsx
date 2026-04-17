@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import React, { JSX, PropsWithChildren, useState } from 'react';
-import { disperse } from '@/app/contact/textDisperse/anim';
+import { disperse } from '@/components/contact/textDisperse/anim';
 
 type Props = {
   setBackground: (isActive: boolean) => void;

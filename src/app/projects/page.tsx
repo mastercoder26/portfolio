@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import ProjectLink from '@/app/projects/projectLink';
-import Modal from '@/app/projects/project/modal';
+import ProjectLink from '@/components/projects/ProjectLink';
+import Modal from '@/components/projects/project/Modal';
 import Layout from '@/components/layout';
-import { ModalContext } from './modalContext';
+import { ModalContext } from '@/components/projects/ModalContext';
 
 const projects = [
   {

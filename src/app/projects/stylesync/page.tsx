@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
-import ProjectHero from '@/app/projects/project/hero';
+import ProjectHero from '@/components/projects/project/Hero';
 import Image from 'next/image';
 
 export default function StyleSync() {

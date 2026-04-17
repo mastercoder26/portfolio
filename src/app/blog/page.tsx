@@ -1,6 +1,6 @@
 import Layout from '@/components/layout';
 import { getBlogPosts } from './actions';
-import { BlogList } from './components/BlogList';
+import { BlogList } from '@/components/blog/BlogList';
 import { SectionHero } from '@/components/ui/SectionHero';
 import { Suspense } from 'react';
 

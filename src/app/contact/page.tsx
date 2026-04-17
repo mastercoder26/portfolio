@@ -1,11 +1,11 @@
 'use client';
 
-import TextDisperse from '@/app/contact/textDisperse/textDisperse';
+import TextDisperse from '@/components/contact/textDisperse/textDisperse';
 import { clsx } from 'clsx';
 import { useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
-import { ContactForm } from '@/app/contact/contactForm';
+import { ContactForm } from '@/components/contact/ContactForm';
 import { useToast } from '@/components/ui/use-toast';
 
 export default function Contact() {
