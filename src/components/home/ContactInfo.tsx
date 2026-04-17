@@ -107,7 +107,7 @@ export default function ContactInfo() {
             </span>
             <Magnetic>
               <Link
-                href="https://github.com/bettinasosa"
+                href="https://github.com/AkhilKonduru1"
                 className={animatedUnderlineStyle}
               >
                 Github
@@ -115,7 +115,7 @@ export default function ContactInfo() {
             </Magnetic>
             <Magnetic>
               <Link
-                href="https://www.linkedin.com/in/bettina-sosa/"
+                href="https://www.linkedin.com/in/akhil-konduru-402650230/"
                 className={animatedUnderlineStyle}
               >
                 Linkedin
