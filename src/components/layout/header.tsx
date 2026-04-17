@@ -52,7 +52,11 @@ export default function Header() {
         className="absolute top-0 z-20 box-border flex w-full items-center p-4 font-light text-white mix-blend-difference lg:p-8"
       >
         <div className="flex lg:pr-56">
-          <Link href={'/'} className="group z-10 flex items-center space-x-2">
+          <Link
+            href={'/'}
+            prefetch={true}
+            className="group z-10 flex items-center space-x-2"
+          >
             <Magnetic>
               <Image
                 height={32}
@@ -79,27 +83,37 @@ export default function Header() {
             <div className="group relative z-10 flex cursor-pointer flex-col p-3">
               <div className="flex flex-col">
                 <Magnetic>
-                  <Link href={'/about'}>About</Link>
+                  <Link href={'/about'} prefetch={true}>
+                    About
+                  </Link>
                 </Magnetic>
                 <Magnetic>
-                  <Link href={'/projects'}>Projects</Link>
+                  <Link href={'/projects'} prefetch={true}>
+                    Projects
+                  </Link>
                 </Magnetic>
               </div>
             </div>
             <div className="group relative z-10 flex cursor-pointer flex-col p-3">
               <div className="flex flex-col">
                 <Magnetic>
-                  <Link href={'/web'}>Web Gallery</Link>
+                  <Link href={'/web'} prefetch={true}>
+                    Web Gallery
+                  </Link>
                 </Magnetic>
                 <Magnetic>
-                  <Link href={'/blog'}>Blog</Link>
+                  <Link href={'/blog'} prefetch={true}>
+                    Blog
+                  </Link>
                 </Magnetic>
               </div>
             </div>
             <div className="group relative z-10 flex cursor-pointer flex-col p-3">
               <Magnetic>
                 <div className="flex">
-                  <Link href={'/contact'}>Contact</Link>
+                  <Link href={'/contact'} prefetch={true}>
+                    Contact
+                  </Link>
                   <ArrowUpRight size={18} />
                 </div>
               </Magnetic>

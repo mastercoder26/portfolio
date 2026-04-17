@@ -25,6 +25,7 @@ export default function NavLinks({ links, setIsActive }: NavLinksProps) {
               <Magnetic>
                 <Link
                   href={href!}
+                  prefetch={true}
                   onClick={() => setIsActive(false)}
                   className="text-[46px] italic text-background no-underline"
                 >

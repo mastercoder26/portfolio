@@ -1,11 +1,19 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDownRight } from 'lucide-react';
-import SlidingImages from '@/components/home/SlidingImages';
 import ContrastCursor from '@/components/animations/cursor/contrastCursor';
-import { LetterCollision } from '@/components/animations/textAnimations/scrollText';
 import Magnetic from '@/components/animations/magnetic';
-import Description from '@/components/home/Description/description';
+import dynamic from 'next/dynamic';
+
+const SlidingImages = dynamic(() => import('@/components/home/SlidingImages'));
+const Description = dynamic(
+  () => import('@/components/home/Description/description')
+);
+const LetterCollision = dynamic(() =>
+  import('@/components/animations/textAnimations/scrollText').then((mod) => ({
+    default: mod.LetterCollision
+  }))
+);
 
 const slider1 = [
   {

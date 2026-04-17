@@ -3,18 +3,30 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useSpotify } from '@/hooks/useSpotify';
 import { useGitHub } from '@/hooks/useGithub';
 import Layout from '@/components/layout';
 import AnimatedSection from '@/components/about/AnimatedSection';
 import TextReveal from '@/components/about/TextReveal';
-import JourneyTimeline from '@/components/about/JourneyTimeline';
-import SpotifyTopTracks from '@/components/about/SpotifyTopTracks';
 import ContrastCursor from '@/components/animations/cursor/contrastCursor';
 import RoundedButton from '@/components/animations/roundedButton';
-import OpenSourceShowcase from '@/components/about/OpenSourceShowcase';
-import CompactGitHubWidget from '@/components/about/Widgets/CompactGitHubWidget';
-import IMessageWidget from '@/components/about/Widgets/IMessageWidget';
+
+const JourneyTimeline = dynamic(
+  () => import('@/components/about/JourneyTimeline')
+);
+const SpotifyTopTracks = dynamic(
+  () => import('@/components/about/SpotifyTopTracks')
+);
+const OpenSourceShowcase = dynamic(
+  () => import('@/components/about/OpenSourceShowcase')
+);
+const CompactGitHubWidget = dynamic(
+  () => import('@/components/about/Widgets/CompactGitHubWidget')
+);
+const IMessageWidget = dynamic(
+  () => import('@/components/about/Widgets/IMessageWidget')
+);
 
 export default function About() {
   const {
