@@ -8,7 +8,11 @@ import { useGitHub } from '@/hooks/useGithub';
  * Compact GitHub activity widget for sidebar display
  */
 export default function CompactGitHubWidget() {
-  const { githubData, isLoading } = useGitHub();
+  const { githubData, isLoading, error } = useGitHub();
+
+  if (error) {
+    return null;
+  }
 
   if (isLoading || !githubData) {
     return (
