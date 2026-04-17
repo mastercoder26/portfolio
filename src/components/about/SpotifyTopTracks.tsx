@@ -8,26 +8,19 @@ import { useScrollDots } from '@/hooks/useScrollDots';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface SpotifyPlaylist {
-  id: string;
+interface SpotifyTrack {
   name: string;
-  description: string;
-  imageUrl: string;
-  trackCount: number;
-  firstTrack: string;
-  firstTrackArtist: string;
+  artist: string;
+  album: string;
+  albumArt: string;
   url: string;
 }
 
-interface SpotifyPlaylistsProps {
-  playlists: SpotifyPlaylist[];
+interface SpotifyTopTracksProps {
+  tracks: SpotifyTrack[];
 }
 
-/**
- * Spotify playlists section with card animations.
- * Displays user's top working playlists with hover effects.
- */
-const SpotifyPlaylists: React.FC<SpotifyPlaylistsProps> = ({ playlists }) => {
+const SpotifyTopTracks: React.FC<SpotifyTopTracksProps> = ({ tracks }) => {
   const DOT_COUNT = 3;
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLAnchorElement[]>([]);
@@ -35,7 +28,7 @@ const SpotifyPlaylists: React.FC<SpotifyPlaylistsProps> = ({ playlists }) => {
   const { activeDot, showDots } = useScrollDots(scrollRef, {
     dotCount: DOT_COUNT,
     axis: 'x',
-    dependencies: [playlists.length]
+    dependencies: [tracks.length]
   });
 
   useEffect(() => {
@@ -67,7 +60,10 @@ const SpotifyPlaylists: React.FC<SpotifyPlaylistsProps> = ({ playlists }) => {
         }
       });
     };
-  }, [playlists]);
+  }, [tracks]);
+
+  // Display only top 10 tracks to avoid making the slider too long
+  const displayTracks = tracks.slice(0, 10);
 
   return (
     <div
@@ -77,9 +73,9 @@ const SpotifyPlaylists: React.FC<SpotifyPlaylistsProps> = ({ playlists }) => {
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold text-foreground">
-            Work Playlists
+            Top Tracks
           </h3>
-          <p className="text-xs text-foreground/50">What I code to</p>
+          <p className="text-xs text-foreground/50">On heavy rotation</p>
         </div>
         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500/15">
           <svg
@@ -96,28 +92,26 @@ const SpotifyPlaylists: React.FC<SpotifyPlaylistsProps> = ({ playlists }) => {
         ref={scrollRef}
         className="scrollbar-hide -mx-2 flex snap-x snap-mandatory gap-3 overflow-x-auto px-2 pb-2"
       >
-        {playlists.map((playlist, i) => (
+        {displayTracks.map((track, i) => (
           <a
-            key={playlist.id}
+            key={track.url + i}
             ref={(el) => {
               if (el) cardsRef.current[i] = el;
             }}
-            href={playlist.url}
+            href={track.url}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative min-w-[180px] shrink-0 snap-start overflow-hidden rounded-xl border border-foreground/10 bg-background p-3 transition-all duration-300 hover:shadow-md sm:min-w-[200px]"
             style={{ perspective: '1000px' }}
           >
-            {/* Album art */}
             <div className="relative mb-3 aspect-square overflow-hidden rounded-xl">
               <Image
-                src={playlist.imageUrl || '/placeholder-playlist.png'}
-                alt={`${playlist.name} cover`}
+                src={track.albumArt || '/placeholder-playlist.png'}
+                alt={`${track.name} cover`}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 768px) 80vw, 220px"
               />
-              {/* Play button overlay */}
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500 shadow-lg">
                   <svg
@@ -131,12 +125,11 @@ const SpotifyPlaylists: React.FC<SpotifyPlaylistsProps> = ({ playlists }) => {
               </div>
             </div>
 
-            {/* Playlist info */}
             <h4 className="truncate text-sm font-semibold text-foreground transition-colors group-hover:text-green-700">
-              {playlist.name}
+              {track.name}
             </h4>
-            <p className="text-xs text-foreground/50">
-              {playlist.trackCount} tracks
+            <p className="truncate text-xs text-foreground/50">
+              {track.artist}
             </p>
           </a>
         ))}
@@ -158,4 +151,4 @@ const SpotifyPlaylists: React.FC<SpotifyPlaylistsProps> = ({ playlists }) => {
   );
 };
 
-export default SpotifyPlaylists;
+export default SpotifyTopTracks;

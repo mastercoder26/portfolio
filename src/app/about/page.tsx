@@ -9,7 +9,7 @@ import Layout from '@/components/layout';
 import AnimatedSection from '@/components/about/AnimatedSection';
 import TextReveal from '@/components/about/TextReveal';
 import JourneyTimeline from '@/components/about/JourneyTimeline';
-import SpotifyPlaylists from '@/components/about/SpotifyPlaylists';
+import SpotifyTopTracks from '@/components/about/SpotifyTopTracks';
 import ContrastCursor from '@/components/animations/cursor/contrastCursor';
 import RoundedButton from '@/components/animations/roundedButton';
 import OpenSourceShowcase from '@/components/about/OpenSourceShowcase';
@@ -18,7 +18,7 @@ import IMessageWidget from '@/components/about/Widgets/IMessageWidget';
 
 export default function About() {
   const {
-    playlists,
+    topTracks,
     isLoading: spotifyLoading,
     error: spotifyError
   } = useSpotify();
@@ -158,9 +158,9 @@ export default function About() {
                     </AnimatedSection>
                     {!spotifyLoading &&
                       !spotifyError &&
-                      playlists.length > 0 && (
+                      topTracks.length > 0 && (
                         <AnimatedSection animation="fade-up">
-                          <SpotifyPlaylists playlists={playlists} />
+                          <SpotifyTopTracks tracks={topTracks} />
                         </AnimatedSection>
                       )}
                   </div>
