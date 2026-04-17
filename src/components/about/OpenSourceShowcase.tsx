@@ -20,28 +20,28 @@ export interface Repo {
 
 export const repos: Repo[] = [
   {
-    name: 'telegram-ai-bot',
-    description:
-      'A production-ready Telegram bot template with OpenAI integration. Perfect for building conversational AI experiences.',
-    url: 'https://github.com/bettinasosa/telegram-bot-template',
-    language: 'TypeScript',
-    tags: ['Template', 'AI', 'Bot'],
+    name: 'Atoll',
+    description: 'Dynamic Island for macOS.',
+    url: 'https://github.com/AkhilKonduru1/Atoll',
+    language: 'Swift',
+    tags: ['macOS', 'App', 'Swift'],
     featured: true
   },
   {
     name: 'portfolio',
     description:
       'This website! Built with Next.js 14, GSAP animations, and a custom design system.',
-    url: 'https://github.com/bettinasosa/portfolio',
+    url: 'https://github.com/AkhilKonduru1/portfolio',
     language: 'TypeScript',
     tags: ['Next.js', 'GSAP', 'Design']
   },
   {
-    name: 'mpc-voting-contract',
-    description: 'A MPC voting contract.',
-    url: 'https://github.com/bettinasosa/voting-contract',
-    language: 'Rust',
-    tags: ['Web3', 'Smart Contracts']
+    name: 'Polymarket-Trading-Bot',
+    description:
+      'The most advanced open-source Polymarket trading bot. 7 automated strategies.',
+    url: 'https://github.com/AkhilKonduru1/Polymarket-Trading-Bot',
+    language: 'TypeScript',
+    tags: ['Trading', 'Bot', 'Polymarket']
   }
 ];
 
@@ -105,13 +105,11 @@ export default function OpenSourceShowcase() {
     >
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <h2 className="text-sm font-semibold text-foreground">
-            Open Source
-          </h2>
+          <h2 className="text-sm font-semibold text-foreground">Open Source</h2>
           <p className="text-xs text-foreground/50">Templates & repos</p>
         </div>
         <Link
-          href="https://github.com/bettinasosa"
+          href="https://github.com/AkhilKonduru1"
           target="_blank"
           rel="noopener noreferrer"
           className="group flex items-center gap-1.5 rounded-full border border-foreground/10 px-2.5 py-1 text-[11px] text-foreground/70 transition-all hover:border-foreground/30 hover:text-foreground"

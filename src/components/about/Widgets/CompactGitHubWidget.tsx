@@ -31,7 +31,7 @@ export default function CompactGitHubWidget() {
 
   return (
     <Link
-      href="https://github.com/bettinasosa"
+      href="https://github.com/AkhilKonduru1"
       target="_blank"
       rel="noopener noreferrer"
       className="group block rounded-xl border border-foreground/10 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md"
