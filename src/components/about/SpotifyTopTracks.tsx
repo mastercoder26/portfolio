@@ -72,12 +72,10 @@ const SpotifyTopTracks: React.FC<SpotifyTopTracksProps> = ({ tracks }) => {
     >
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <h3 className="text-sm font-semibold text-foreground">
-            Top Tracks
-          </h3>
-          <p className="text-xs text-foreground/50">On heavy rotation</p>
+          <h3 className="text-sm font-semibold text-foreground">Top Tracks</h3>
+          <p className="text-xs text-foreground/50">Chill late night picks</p>
         </div>
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500/15">
+        <div className="bg-green-500/15 flex h-8 w-8 items-center justify-center rounded-full">
           <svg
             viewBox="0 0 24 24"
             className="h-4 w-4 text-green-600"

@@ -8,14 +8,16 @@ const spotifyApi = new SpotifyWebApi({
   refreshToken: process.env.SPOTIFY_REFRESH_TOKEN
 });
 
+const CHILL_PLAYLIST_ID = '37i9dQZF1EIfH4we62RxMe';
+
 export async function GET() {
   try {
     const data = await spotifyApi.refreshAccessToken();
     spotifyApi.setAccessToken(data.body['access_token']);
 
-    const [topArtists, topTracks] = await Promise.all([
+    const [topArtists, playlistTracks] = await Promise.all([
       spotifyApi.getMyTopArtists({ limit: 25 }),
-      spotifyApi.getMyTopTracks({ limit: 25 })
+      spotifyApi.getPlaylistTracks(CHILL_PLAYLIST_ID, { limit: 10 })
     ]);
 
     const formattedArtists = topArtists.body.items.map((artist) => ({
@@ -24,13 +26,18 @@ export async function GET() {
       images: artist.images
     }));
 
-    const formattedTracks = topTracks.body.items.map((track) => ({
-      name: track.name,
-      artist: track.artists[0].name,
-      album: track.album.name,
-      url: track.external_urls.spotify,
-      albumArt: track.album.images[0]?.url // This line fetches the album art URL
-    }));
+    const formattedTracks = playlistTracks.body.items
+      .filter((item) => item.track && item.track.type === 'track')
+      .map((item) => {
+        const track = item.track as SpotifyApi.TrackObjectFull;
+        return {
+          name: track.name,
+          artist: track.artists[0].name,
+          album: track.album.name,
+          url: track.external_urls.spotify,
+          albumArt: track.album.images[0]?.url ?? null
+        };
+      });
 
     return NextResponse.json({
       topArtists: formattedArtists,

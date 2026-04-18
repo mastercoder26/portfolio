@@ -35,7 +35,7 @@ const dotVariants = {
 };
 
 const initialPrompt =
-  'want to work together? just want to chat? send me a text here (no, for real)';
+  'want to work together? just want to chat? send me a text here';
 
 const questionsByStep: Record<
   Exclude<ConversationStep, 'intro' | 'done'>,

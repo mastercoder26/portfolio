@@ -96,11 +96,12 @@ export default function About() {
                       {' '}
                       sophomore @ Rouse High School
                     </Link>
-                    , run hands-on workshops, and run a devRel Guild. I thrive
-                    at the intersection of technical depth, creative
-                    problem-solving, and community building. I am also a digital
-                    nomad, traveling the world and learning from different
-                    cultures and people.
+                    , I focus on computer science and business. I run hands‑on
+                    workshops, build projects with friends, and help lead a
+                    small developer‑relations‑style community for student
+                    builders. I thrive at the intersection of technical depth,
+                    creative problem‑solving, and community building, and I’m
+                    always looking for new ways to learn, ship, and share.
                   </p>
                 </div>
               </AnimatedSection>
@@ -111,7 +112,7 @@ export default function About() {
             <AnimatedSection animation="fade-up">
               <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
                 <h2 className="text-xl font-bold text-foreground sm:text-2xl">
-                  Where I&apos;ve Been
+                  What I&apos;ve Been Doing
                 </h2>
               </div>
 
