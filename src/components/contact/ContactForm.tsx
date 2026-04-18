@@ -36,7 +36,7 @@ export function ContactForm() {
   };
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="pb-20 pt-20">
       <div className="flex flex-col gap-12 lg:grid lg:grid-cols-3 lg:gap-8">
         <div className="flex flex-col gap-4 sm:gap-6">
           <h2 className="text-3xl font-medium tracking-tight sm:text-4xl">
