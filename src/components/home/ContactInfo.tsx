@@ -154,7 +154,7 @@ export default function ContactInfo() {
             </Magnetic>
           </div>
         </div>
-        <div className="mt-6 border-t border-gray-700 pb-6 pt-4 text-center sm:mx-[100px]">
+        <div className="mt-6 border-t border-gray-700 pb-6 pt-4 text-right sm:mx-[100px]">
           <p className="text-sm text-gray-500">
             Thanks Bettina Sosa for the og website —{' '}
             <a
