@@ -7,9 +7,8 @@ import RoundedButton from '@/components/animations/roundedButton';
 import Link from 'next/link';
 
 export default function ContactInfo() {
-  const [timeNow, setTimeNow] = useState(
-    new Date().getHours() + ':' + new Date().getMinutes()
-  );
+  const [timeNow, setTimeNow] = useState('');
+  const [hourDiff, setHourDiff] = useState<number | null>(null);
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -23,12 +22,43 @@ export default function ContactInfo() {
     "after:ease-linear after:content-[''] hover:after:w-full";
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeNow(new Date().toLocaleTimeString());
-    }, 1000);
+    const updateTime = () => {
+      const now = new Date();
 
+      // Austin time
+      const austinTime = now.toLocaleTimeString('en-US', {
+        timeZone: 'America/Chicago',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      setTimeNow(austinTime);
+
+      // Compute offset difference in hours between viewer and Austin
+      const austinDate = new Date(
+        now.toLocaleString('en-US', { timeZone: 'America/Chicago' })
+      );
+      const localDate = new Date(
+        now.toLocaleString('en-US', { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone })
+      );
+      const diffMs = localDate.getTime() - austinDate.getTime();
+      const diffHours = Math.round(diffMs / (1000 * 60 * 60));
+      setHourDiff(diffHours);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
-  }, [timeNow]);
+  }, []);
+
+  const diffLabel =
+    hourDiff === null
+      ? ''
+      : hourDiff === 0
+      ? 'same time as you'
+      : hourDiff > 0
+      ? `+${hourDiff}h from you`
+      : `${hourDiff}h from you`;
 
   return (
     <motion.div
@@ -72,8 +102,8 @@ export default function ContactInfo() {
 
         <div className="mt-20 flex flex-col justify-between p-5 2xs:mt-52 sm:mx-[100px] sm:mt-48 sm:flex-row">
           <p className="min-w-screen mb-5 text-base sm:max-w-xs">
-            AI/LLM enthusiast | Cutting-edge tech advocate | Web3 builder |
-            Passionate about using technology to make the world a better place.
+            AI/LLM enthusiast | Student | Aspiring developer | Interested in
+            using technology to make lives easier.
           </p>
           <div className="flex items-end gap-2">
             <span className="flex flex-col gap-3">
@@ -87,7 +117,10 @@ export default function ContactInfo() {
                 Timezone
               </h3>
               <p className="relative m-0 cursor-pointer p-1">
-                {timeNow} UK (GMT+1)
+                {timeNow} CT (Austin)
+                {hourDiff !== null && (
+                  <span className="ml-2 text-sm text-gray-400">{diffLabel}</span>
+                )}
               </p>
             </span>
           </div>
@@ -96,14 +129,6 @@ export default function ContactInfo() {
               <h3 className="m-0 cursor-default text-base font-light text-gray-500">
                 Socials
               </h3>
-              <Magnetic>
-                <Link
-                  href="https://twitter.com/bettysrohl"
-                  className={animatedUnderlineStyle}
-                >
-                  Twitter
-                </Link>
-              </Magnetic>
             </span>
             <Magnetic>
               <Link
@@ -127,3 +152,6 @@ export default function ContactInfo() {
     </motion.div>
   );
 }
+```
+
+Now let me push this to GitHub:
