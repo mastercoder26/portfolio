@@ -1,7 +1,18 @@
 import { NextResponse } from 'next/server';
 import SpotifyWebApi from 'spotify-web-api-node';
 
-const CHILL_PLAYLIST_ID = '37i9dQZF1EIfH4we62RxMe';
+const CALM_SONGS = [
+  'End of Beginning Djo',
+  'White Ferrari Frank Ocean',
+  'Dark Red Steve Lacy',
+  'Lovers Rock TV Girl',
+  '505 Arctic Monkeys',
+  'Cinnamon Girl Lana Del Rey',
+  'Japanese Denim Daniel Caesar',
+  'Hotel California Joji',
+  'Is There Someone Else The Weeknd',
+  'No One Noticed The Marias'
+];
 
 export async function GET() {
   try {
@@ -13,32 +24,27 @@ export async function GET() {
     const tokenData = await spotifyApi.clientCredentialsGrant();
     spotifyApi.setAccessToken(tokenData.body['access_token']);
 
-    const playlistData = await spotifyApi.getPlaylistTracks(CHILL_PLAYLIST_ID, {
-      limit: 10
-    });
+    const results = await Promise.all(
+      CALM_SONGS.map((query) => spotifyApi.searchTracks(query, { limit: 1 }))
+    );
 
-    const formattedTracks = playlistData.body.items
-      .filter((item) => {
-        const track = item.track as any;
-        return track && track.name && track.artists && track.album;
-      })
-      .map((item) => {
-        const track = item.track as any;
-        return {
-          name: track.name,
-          artist: track.artists[0]?.name ?? 'Unknown',
-          album: track.album.name,
-          url: track.external_urls?.spotify ?? '#',
-          albumArt: track.album.images?.[0]?.url ?? null
-        };
-      });
+    const formattedTracks = results
+      .map((result) => result.body.tracks?.items[0])
+      .filter(Boolean)
+      .map((track) => ({
+        name: track!.name,
+        artist: track!.artists[0].name,
+        album: track!.album.name,
+        url: track!.external_urls.spotify,
+        albumArt: track!.album.images[0]?.url ?? null
+      }));
 
     return NextResponse.json({
       topTracks: formattedTracks,
       topArtists: []
     });
   } catch (error) {
-    console.error('Error fetching Spotify playlist:', error);
+    console.error('Error fetching Spotify tracks:', error);
     return NextResponse.json(
       { error: 'Failed to fetch Spotify data' },
       { status: 500 }
