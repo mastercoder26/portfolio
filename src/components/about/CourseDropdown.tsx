@@ -48,9 +48,14 @@ export default function CourseDropdown({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute left-0 top-full z-50 mt-3 w-72 overflow-hidden rounded-2xl border border-foreground/10 bg-background shadow-xl"
+            className="pointer-events-auto absolute left-0 top-full z-50 mt-3 w-72 overflow-hidden rounded-2xl border border-foreground/10 bg-background shadow-xl"
           >
-            <ul className="max-h-48 overflow-y-auto py-2">
+            <ul
+              className="max-h-48 overflow-y-auto py-2"
+              data-lenis-prevent
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+            >
               {courses.map((course, idx) => (
                 <li
                   key={idx}
