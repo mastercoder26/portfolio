@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react';
 import { Metadata } from 'next';
 import Animations from './animations';
 import Header from '@/components/layout/header';
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/next';
 import { Toaster } from '@/components/ui/toaster';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import ProximityPrefetcher from '@/components/layout/ProximityPrefetcher';
