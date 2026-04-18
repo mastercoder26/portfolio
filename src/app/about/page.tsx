@@ -11,6 +11,7 @@ import AnimatedSection from '@/components/about/AnimatedSection';
 import TextReveal from '@/components/about/TextReveal';
 import ContrastCursor from '@/components/animations/cursor/contrastCursor';
 import RoundedButton from '@/components/animations/roundedButton';
+import CourseDropdownGroup from '@/components/about/CourseDropdownGroup';
 
 const JourneyTimeline = dynamic(
   () => import('@/components/about/JourneyTimeline')
@@ -161,18 +162,41 @@ export default function About() {
                             </div>
                           </a>
                         </div>
-                        <div className="flex flex-wrap gap-3">
-                          <Link href="/projects/m31">
-                            <RoundedButton>
-                              Andromeda — Creative Conscience Gold
-                            </RoundedButton>
-                          </Link>
-                          <Link href="/projects/axo">
-                            <RoundedButton>
-                              AxoWear — Design Museum London
-                            </RoundedButton>
-                          </Link>
-                        </div>
+                        <CourseDropdownGroup
+                          courseGroups={[
+                            {
+                              title: 'Courses (Freshman)',
+                              courses: [
+                                'Principles of Business & Finance (Business)',
+                                'Computer Science Advanced (CS)',
+                                'Precalculus AP',
+                                'Human Geography AP'
+                              ]
+                            },
+                            {
+                              title: 'Courses (Sophomore)',
+                              courses: [
+                                'Business Management (Business)',
+                                'Computer Science AP (CS)',
+                                'Calculus AB AP',
+                                'Physics 1 AP',
+                                'Seminar AP',
+                                'World History AP'
+                              ]
+                            },
+                            {
+                              title: 'Courses (Junior)',
+                              courses: [
+                                'Practicum Business Management (Double Blocked) (Business)',
+                                'Computer Science III (CS)',
+                                'English III AP Lang & Comp',
+                                'Statistics AP',
+                                'Environmental Science AP',
+                                'U.S. History AP'
+                              ]
+                            }
+                          ]}
+                        />
                       </div>
                     </AnimatedSection>
                   </section>
