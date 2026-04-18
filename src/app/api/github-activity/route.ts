@@ -26,6 +26,26 @@ export async function GET() {
             }
             restrictedContributionsCount
           }
+          repositories(
+            first: 10
+            ownerAffiliations: OWNER
+            privacy: PUBLIC
+            orderBy: { field: UPDATED_AT, direction: DESC }
+          ) {
+            nodes {
+              name
+              description
+              url
+              stargazerCount
+              forkCount
+              isArchived
+              primaryLanguage {
+                name
+                color
+              }
+              updatedAt
+            }
+          }
         }
       }
     `;
@@ -37,22 +57,36 @@ export async function GET() {
 
     const contributions = calendar.weeks.flatMap(
       (week: { contributionDays: any[] }) =>
-        week.contributionDays.map((day) => ({
+        week.contributionDays.map((day: any) => ({
           date: day.date,
           count: day.contributionCount
         }))
     );
 
+    const repos = response.user.repositories.nodes.map((repo: any) => ({
+      name: repo.name,
+      description: repo.description ?? null,
+      url: repo.url,
+      stars: repo.stargazerCount,
+      forks: repo.forkCount,
+      isArchived: repo.isArchived,
+      language: repo.primaryLanguage
+        ? { name: repo.primaryLanguage.name, color: repo.primaryLanguage.color }
+        : null,
+      updatedAt: repo.updatedAt
+    }));
+
     return NextResponse.json({
       contributions,
       totalContributions: calendar.totalContributions,
       restrictedContributions: restrictedCount,
-      name: response.user.name
+      name: response.user.name,
+      repos
     });
   } catch (error) {
-    console.error('Error fetching GitHub contributions:', error);
+    console.error('Error fetching GitHub data:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch GitHub contributions' },
+      { error: 'Failed to fetch GitHub data' },
       { status: 500 }
     );
   }

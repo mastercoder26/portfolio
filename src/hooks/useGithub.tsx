@@ -1,5 +1,3 @@
-// src/hooks/useGitHub.ts
-
 import { useEffect, useState } from 'react';
 
 interface ContributionDay {
@@ -7,11 +5,28 @@ interface ContributionDay {
   count: number;
 }
 
+interface RepoLanguage {
+  name: string;
+  color: string;
+}
+
+export interface Repo {
+  name: string;
+  description: string | null;
+  url: string;
+  stars: number;
+  forks: number;
+  isArchived: boolean;
+  language: RepoLanguage | null;
+  updatedAt: string;
+}
+
 interface GitHubData {
   contributions: ContributionDay[];
   totalContributions: number;
   restrictedContributions: number;
   name: string;
+  repos: Repo[];
 }
 
 export const useGitHub = () => {
@@ -20,23 +35,23 @@ export const useGitHub = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchGitHubContributions = async () => {
+    const fetchGitHubData = async () => {
       setIsLoading(true);
       try {
         const response = await fetch('/api/github-activity');
         if (!response.ok) {
-          throw new Error('Failed to fetch GitHub contributions');
+          throw new Error('Failed to fetch GitHub data');
         }
         const data = await response.json();
         setGithubData(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
+        setError(err instanceof Error ? err.message : 'Unknown error');
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchGitHubContributions();
+    fetchGitHubData();
   }, []);
 
   return { githubData, isLoading, error };
