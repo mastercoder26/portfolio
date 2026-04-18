@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+  background-color: hsl(282 100% 81% / 0.4);
+  color: hsl(0 0% 8%);
+}
+
+::-moz-selection {
+  background-color: hsl(282 100% 81% / 0.4);
+  color: hsl(0 0% 8%);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%; /* eddfef pale purple 0 100% 100%; */

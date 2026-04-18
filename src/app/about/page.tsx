@@ -79,8 +79,8 @@ export default function About() {
                     My Superpower
                   </h3>
                   <p className="leading-relaxed text-foreground/70">
-                    Taking abstract ideas and turning them into tangible,
-                    scalable products that people actually want to use.
+                    Bringing a drive to learn and improve, while also being able
+                    come up with and design abstract ideas.
                   </p>
                 </div>
               </AnimatedSection>
@@ -88,14 +88,13 @@ export default function About() {
               <AnimatedSection animation="fade-up" delay={0.2}>
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-foreground">
-                    Outside the IDE
+                    Personal Background
                   </h3>
                   <p className="leading-relaxed text-foreground/70">
-                    Born in London. Raised in Barcelona. Venezuelan at heart. I
-                    speak at IRL developer events, I write
+                    Born in Seattle in 2010. Moved to Austin in 2022. A current
                     <Link href="/blog" className="text-primary">
                       {' '}
-                      technical posts
+                      sophomore @ Rouse High School
                     </Link>
                     , run hands-on workshops, and run a devRel Guild. I thrive
                     at the intersection of technical depth, creative
