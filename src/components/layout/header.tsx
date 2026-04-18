@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
@@ -13,6 +14,7 @@ import Image from 'next/image';
 export default function Header() {
   const header = useRef(null);
   const [isActive, setIsActive] = useState(false);
+  const [nameHovered, setNameHovered] = useState(false);
   const pathname = usePathname();
   const button = useRef(null);
 
@@ -56,6 +58,8 @@ export default function Header() {
             href={'/'}
             prefetch={true}
             className="group z-10 flex items-center space-x-2"
+            onMouseEnter={() => setNameHovered(true)}
+            onMouseLeave={() => setNameHovered(false)}
           >
             <Magnetic>
               <Image
@@ -67,11 +71,27 @@ export default function Header() {
               />
             </Magnetic>
             {!isMobile() && (
-              <div className="flex items-baseline overflow-hidden">
+              <div className="flex items-baseline">
                 <span>Akhil</span>
-                <span className="ease-custom-cubic inline-block max-w-0 overflow-hidden whitespace-nowrap transition-all duration-500 group-hover:max-w-[200px]">
-                  &nbsp;Konduru
-                </span>
+                <AnimatePresence>
+                  {nameHovered && (
+                    <motion.span
+                      key="konduru"
+                      initial={{ x: 24, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: 24, opacity: 0 }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 350,
+                        damping: 12,
+                        mass: 0.8
+                      }}
+                      className="whitespace-nowrap"
+                    >
+                      &nbsp;Konduru
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </div>
             )}
           </Link>
