@@ -27,7 +27,7 @@ export default function M31Project() {
     'brand identity, and UI/UX design of the product, as well as the engineering behind the audio-tactile gaming system.';
 
   return (
-    <div className="bg-foreground">
+    <div className="bg-inverse text-inverse-foreground">
       <ProjectHero
         description={myRole}
         media={'https://www.youtube.com/embed/bXaLimCtK50'}

@@ -63,6 +63,12 @@ const config = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
+        },
+        inverse: {
+          DEFAULT: 'hsl(var(--inverse))',
+          foreground: 'hsl(var(--inverse-foreground))',
+          muted: 'hsl(var(--inverse-muted))',
+          border: 'hsl(var(--inverse-border))'
         }
       },
       borderRadius: {

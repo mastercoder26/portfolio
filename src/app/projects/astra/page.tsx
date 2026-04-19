@@ -44,7 +44,7 @@ export default function AstraProject() {
     }
   ];
   return (
-    <div className="bg-foreground">
+    <div className="bg-inverse text-inverse-foreground">
       <Intro
         images={['/images/astra/giz1.png', '/images/astra/gizmo.png']}
         title={'ASTRA'}

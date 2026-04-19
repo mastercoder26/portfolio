@@ -20,7 +20,7 @@ export default function MenuButton({ isActive, toggleMenu }: ButtonProps) {
           <PerspectiveText label="Menu" />
         </div>
         <div
-          className="hover:transform-perspective hover:rotate-x-90 h-full w-full bg-[#FFF7E5] text-secondary"
+          className="hover:transform-perspective hover:rotate-x-90 h-full w-full bg-accent text-secondary"
           onClick={toggleMenu}
         >
           <PerspectiveText label="Close" />

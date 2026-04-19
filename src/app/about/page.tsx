@@ -121,13 +121,13 @@ export default function About() {
               <div className="grid gap-4 lg:grid-cols-2">
                 {/* Timeline - takes 2/3 width */}
                 <div className="min-w-0 lg:col-span-1">
-                  <div className="rounded-2xl border border-foreground/5 bg-white p-6 shadow-sm sm:p-8">
+                  <div className="rounded-2xl border border-foreground/5 bg-card p-6 shadow-sm sm:p-8">
                     <JourneyTimeline />
                   </div>
                   {/* Education Section */}
                   <section className="py-16">
                     <AnimatedSection animation="fade-up">
-                      <div className="rounded-2xl border border-foreground/5 bg-white p-6 shadow-sm sm:p-8">
+                      <div className="rounded-2xl border border-foreground/5 bg-card p-6 shadow-sm sm:p-8">
                         <h2 className="mb-4 text-xl font-bold text-foreground sm:text-2xl">
                           Education & Recognition
                         </h2>

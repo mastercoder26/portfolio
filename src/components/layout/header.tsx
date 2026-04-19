@@ -10,6 +10,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { isMobile } from '@/components/util';
 import Magnetic from '@/components/animations/magnetic';
 import Image from 'next/image';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 export default function Header() {
   const header = useRef(null);
@@ -126,19 +127,27 @@ export default function Header() {
                 </Magnetic>
               </div>
             </div>
-            <div className="group relative z-10 flex cursor-pointer flex-col p-3">
-              <Magnetic>
-                <div className="flex">
-                  <Link href={'/contact'} prefetch={false}>
-                    Contact
-                  </Link>
-                  <ArrowUpRight size={18} />
-                </div>
-              </Magnetic>
+            <div className="flex items-center gap-1">
+              <ThemeToggle />
+              <div className="group relative z-10 flex cursor-pointer flex-col p-3">
+                <Magnetic>
+                  <div className="flex">
+                    <Link href={'/contact'} prefetch={false}>
+                      Contact
+                    </Link>
+                    <ArrowUpRight size={18} />
+                  </div>
+                </Magnetic>
+              </div>
             </div>
           </div>
         )}
       </div>
+      {isMobile() && (
+        <div className="fixed right-[88px] top-4 z-20 md:right-[100px] lg:top-8">
+          <ThemeToggle />
+        </div>
+      )}
       {!isMobile() && (
         <div ref={button} className="fixed right-0 z-20 scale-0 transform">
           <Menu />

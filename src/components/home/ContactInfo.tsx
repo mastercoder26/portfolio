@@ -18,7 +18,7 @@ export default function ContactInfo() {
   const y = useTransform(scrollYProgress, [0, 1], [-500, 0]);
   const animatedUnderlineStyle =
     'relative after:absolute after:left-1/2 after:mt-0.5 after:block after:h-px after:w-0' +
-    ' after:-translate-x-1/2 after:transform after:bg-white after:duration-200 ' +
+    ' after:-translate-x-1/2 after:transform after:bg-inverse-foreground after:duration-200 ' +
     "after:ease-linear after:content-[''] hover:after:w-full";
 
   useEffect(() => {
@@ -66,10 +66,10 @@ export default function ContactInfo() {
     <motion.div
       style={{ y }}
       ref={container}
-      className="relative flex min-h-screen flex-col items-center justify-between bg-foreground p-6 pt-32 text-white sm:justify-center"
+      className="relative flex min-h-screen flex-col items-center justify-between bg-inverse p-6 pt-32 text-inverse-foreground sm:justify-center"
     >
-      <div className="w-full bg-foreground pt-[150px] sm:max-w-[1800px]">
-        <div className="relative border-b border-gray-600 pb-12 sm:mx-[100px]">
+      <div className="w-full bg-inverse pt-[150px] sm:max-w-[1800px]">
+        <div className="relative border-b border-inverse-border pb-12 sm:mx-[100px]">
           <span className="flex items-center">
             <div className="relative h-16 w-16 overflow-hidden rounded-full sm:h-[100px] sm:w-[100px]">
               <Image
@@ -91,7 +91,7 @@ export default function ContactInfo() {
             <Link href={'/contact'} prefetch={false}>
               <RoundedButton
                 backgroundColor="secondary"
-                className=" absolute h-[100px] w-[100px] cursor-pointer items-center justify-center rounded-full bg-primary p-0 text-white sm:h-[200px] sm:w-[200px]"
+                className=" absolute h-[100px] w-[100px] cursor-pointer items-center justify-center rounded-full bg-primary p-0 text-primary-foreground sm:h-[200px] sm:w-[200px]"
               >
                 Get in touch
               </RoundedButton>
@@ -109,7 +109,7 @@ export default function ContactInfo() {
           </p>
           <div className="flex items-end gap-2">
             <span className="flex flex-col gap-3">
-              <h3 className="m-0 cursor-default p-1 text-base font-light text-gray-500">
+              <h3 className="m-0 cursor-default p-1 text-base font-light text-inverse-muted">
                 Version
               </h3>
               <p className="relative m-0 cursor-pointer p-1">
@@ -117,13 +117,13 @@ export default function ContactInfo() {
               </p>
             </span>
             <span className="flex flex-col gap-3">
-              <h3 className="m-0 cursor-default p-1 text-base font-light text-gray-500">
+              <h3 className="m-0 cursor-default p-1 text-base font-light text-inverse-muted">
                 Timezone
               </h3>
               <p className="relative m-0 cursor-pointer p-1">
                 {timeNow} CT (Austin)
                 {hourDiff !== null && (
-                  <span className="ml-2 text-sm text-gray-400">
+                  <span className="ml-2 text-sm text-inverse-muted">
                     {diffLabel}
                   </span>
                 )}
@@ -132,7 +132,7 @@ export default function ContactInfo() {
           </div>
           <div className="flex items-end gap-2">
             <span className="flex flex-col gap-3">
-              <h3 className="m-0 cursor-default text-base font-light text-gray-500">
+              <h3 className="m-0 cursor-default text-base font-light text-inverse-muted">
                 Socials
               </h3>
             </span>
@@ -154,14 +154,14 @@ export default function ContactInfo() {
             </Magnetic>
           </div>
         </div>
-        <div className="mt-6 border-t border-gray-700 pb-6 pt-4 text-right sm:mx-[100px]">
-          <p className="text-sm text-gray-500">
+        <div className="mt-6 border-t border-inverse-border pb-6 pt-4 text-right sm:mx-[100px]">
+          <p className="text-sm text-inverse-muted">
             Thanks Bettina Sosa for the website inspiration -{'>'}{' '}
             <a
               href="https://github.com/bettinasosa/portfolio"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline transition-colors hover:text-gray-300"
+              className="underline transition-colors hover:text-inverse-foreground"
             >
               website repo
             </a>
