@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import { clsx } from 'clsx';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 interface TextRevealProps {
   text: string;
@@ -17,8 +18,10 @@ interface TextRevealProps {
 }
 
 /**
- * Animated text reveal component with per-word or per-character animations.
- * Perfect for hero headlines and impactful statements.
+ * Animated text reveal with per-word entrance. Initial hidden state is
+ * applied via inline styles on each word so first paint never shows the
+ * visible state — this prevents the previous flicker where the heading
+ * appeared, then snapped invisible, then animated in.
  */
 export default function TextReveal({
   text,
@@ -31,12 +34,12 @@ export default function TextReveal({
   const containerRef = useRef<HTMLDivElement>(null);
   const wordsRef = useRef<HTMLSpanElement[]>([]);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    const words = wordsRef.current;
-    if (!words.length || !container) return;
+  useGSAP(
+    () => {
+      const container = containerRef.current;
+      const words = wordsRef.current.filter(Boolean);
+      if (!words.length || !container) return;
 
-    const ctx = gsap.context(() => {
       if (scrub) {
         gsap.fromTo(
           words,
@@ -84,12 +87,26 @@ export default function TextReveal({
           }
         );
       }
-    }, container);
-
-    return () => ctx.revert();
-  }, [stagger, scrub]);
+    },
+    { scope: containerRef, dependencies: [stagger, scrub] }
+  );
 
   const words = text.split(' ');
+
+  const initialWordStyle: React.CSSProperties = scrub
+    ? {
+        opacity: 0.1,
+        transform: 'translateY(24px) rotateX(-40deg)',
+        filter: 'blur(4px)',
+        transformStyle: 'preserve-3d',
+        willChange: 'transform, opacity, filter'
+      }
+    : {
+        opacity: 0,
+        transform: 'translateY(32px) rotateX(-20deg)',
+        transformStyle: 'preserve-3d',
+        willChange: 'transform, opacity'
+      };
 
   return (
     <div ref={containerRef} style={{ perspective: '1000px' }}>
@@ -106,7 +123,7 @@ export default function TextReveal({
                 ? 'font-bold text-primary'
                 : ''
             )}
-            style={{ transformStyle: 'preserve-3d' }}
+            style={initialWordStyle}
           >
             {word}
           </span>

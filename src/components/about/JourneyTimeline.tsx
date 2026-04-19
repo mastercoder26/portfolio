@@ -19,49 +19,81 @@ interface TimelineItem {
 const journeyData: TimelineItem[] = [
   {
     year: 'Now',
-    title: 'Freelance Engineer & DevRel',
-    company: 'Independent',
+    title: 'Business Ethics Competitor',
+    company: 'Rouse High School FBLA',
     description:
-      "I work independently across software engineering and DevRel. I lead the DevRel Guild at Myosin, work with teams such as WalletConnect, and I'm building HiveMind with a team of five, an AI product that scales developer and marketing workflows. My work spans the full funnel: reference apps, SDK and docs improvements, content, workshops, and builder programs.",
+      'Compete on a Business Ethics team for Rouse FBLA. Placed 2nd at the Texas State Leadership Conference out of roughly 30 teams, qualified for the National Leadership Conference, and was selected as a top-10 applicant for a $1,000 Wells Fargo Business Scholarship.',
     highlight: true
   },
   {
-    year: '2025',
-    title: 'Head of Engineering & Developer Relations',
-    company: 'Partisia Blockchain',
-    companyUrl: 'https://partisiablockchain.com/',
+    year: '2026',
+    title: 'Competitive Programmer',
+    company: 'USA Computing Olympiad',
     description:
-      'Led Engineering and DevRel for privacy-first infrastructure and multi-party computation. Shipped production smart contracts, revamped developer docs, and built the developer funnel through workshops, hackathons, and open-source. Launched their first bounty program resulting in the biggest developer contribution to their codebase to date.'
+      'Reached Silver division in the 2026 USACO season, solving timed algorithmic problems and steadily deepening my fluency with data structures, recursion, and graph algorithms.'
+  },
+  {
+    year: '2025',
+    title: 'Sophomore Class Vice President',
+    company: 'Rouse High School Student Council',
+    description:
+      'Serve as VP of the sophomore class with a dedicated StuCo class period. Help plan and run school-wide events including trunk-or-treat, homecoming, and pep rallies, and coordinate with officers and sponsors on the year’s calendar.'
+  },
+  {
+    year: '2025',
+    title: 'Varsity Speech & Debate',
+    company: 'Rouse High School Speech & Debate',
+    description:
+      'Ranked #1 in internal team standings and was promoted to varsity in the second semester. Compete across multiple speech and debate event formats, focusing on argument construction, delivery, and quick-turn rebuttal.'
+  },
+  {
+    year: '2025',
+    title: 'Marketing & Coding Fellow',
+    company: 'JammyChat · VentureEd Fellowship',
+    description:
+      'Selected for the VentureEd summer fellowship and embedded with JammyChat across marketing and engineering. Worked on growth experiments and product surfaces in the same week, which sharpened how I move between user-facing strategy and implementation.'
+  },
+  {
+    year: '2025',
+    title: 'Volunteer Counselor',
+    company: 'Camp CAMP (SPED Camp)',
+    description:
+      'Served as a counselor at Camp CAMP, a summer camp for children and young adults with special needs. Supported one camper full-time across activities and routines, logging 149 documented volunteer hours over the summer.'
+  },
+  {
+    year: '2025',
+    title: 'Member',
+    company: 'National Technical Honor Society',
+    description:
+      'Inducted for sustained academic performance in technical and career-focused coursework, with particular emphasis on computer science and business.'
   },
   {
     year: '2024',
-    title: 'AI & Trading Systems',
-    company: 'Catapult Labs',
-    companyUrl: 'https://www.catapult.xyz/',
+    title: 'Business Competitor',
+    company: 'Rouse High School DECA',
     description:
-      'Built an AI co-pilot for digital asset trading that unifies client conversations across chat clients using OpenAI models.'
+      'Compete in DECA business events including BLTDM. Earned state finalist and ICDC qualifier honors as a freshman, and returned to districts as a sophomore with additional case-challenge events.'
   },
   {
-    year: '2022',
-    title: 'DeFi Protocols & Smart Contracts',
-    company: 'Catapult Labs',
-    companyUrl: 'https://www.catapult.xyz/',
+    year: '2024',
+    title: 'Model UN Delegate',
+    company: 'Rouse High School Model UN',
     description:
-      'Developed decentralised financial primitives for OTC crypto markets, including collateral management and margin trading. Learned Solidity for on-chain financial products.'
+      'Compete at AUSMUN, CTMUN, SICMUN, and the CTMUN Spring Crisis conference. Sharpening research, public speaking, and crisis-style negotiation across both general assembly and crisis committees.'
   },
   {
-    year: '2021',
-    title: 'Founding Full-Stack Engineer',
-    company: 'Sojo',
-    companyUrl: 'https://www.sojo.uk/',
+    year: '2023',
+    title: 'Soccer Referee',
+    company: 'U.S. Soccer Federation',
     description:
-      'Shipped the core platform for clothing repairs and customisation, from product design through deployment.'
+      'USSF-certified official for 30+ competitive youth soccer matches. Manage game flow, enforce the laws of the game, and handle on-field conflict between players, coaches, and spectators.'
   },
   {
-    year: '2021',
-    title: 'Design Engineering MEng',
-    company: 'Imperial College London',
-    description: 'Graduated from my masters with honours.'
+    year: '2023',
+    title: 'Team Captain',
+    company: 'Lonestar SC Alpha U15',
+    description:
+      'Captained the Alpha U15 squad under Coach Clint through the 2023–2024 season. Led warm-ups, set the tone in practices, and served as the on-field communicator in competitive league play.'
   }
 ];
 
