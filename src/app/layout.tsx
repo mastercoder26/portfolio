@@ -12,11 +12,12 @@ import ProximityPrefetcher from '@/components/layout/ProximityPrefetcher';
 const inter = Inter({ subsets: ['latin'] });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.bettinasosa.com';
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.akhilkonduru.com';
 
 const metaDescription =
   'Creative Builder · Software Engineer · Design Engineer. Product, code & craft.';
 
+// TODO: replace with a proper OG image once one exists in /public/images/
 const ogImagePath = '/images/Bettina_s%20portfolio.jpeg';
 
 export const metadata: Metadata = {
@@ -64,7 +65,7 @@ export default function RootLayout({
       <body className="overflow-scroll overflow-x-hidden" suppressHydrationWarning>
         <SpeedInsights />
         <Animations>
-          <main>
+          <div>
             <ProximityPrefetcher />
             <Header />
             <div className="flex flex-col bg-background text-foreground">
@@ -72,7 +73,7 @@ export default function RootLayout({
               <Analytics />
             </div>
             <Toaster />
-          </main>
+          </div>
         </Animations>
       </body>
     </html>

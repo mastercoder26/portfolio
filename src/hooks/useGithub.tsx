@@ -22,7 +22,7 @@ export interface Repo {
   topics: string[];
 }
 
-interface GitHubData {
+export interface GitHubData {
   contributions: ContributionDay[];
   totalContributions: number;
   restrictedContributions: number;

@@ -1,8 +1,6 @@
-import { blogPostSchema, type BlogPost } from '@/components/blog/types';
-import { z } from 'zod';
+import { type BlogPost } from '@/components/blog/types';
 
-const MEDIUM_USERNAME = 'bettinasosarohl';
-const TWITTER_USERNAME = 'bettysrohl';
+const MEDIUM_USERNAME = process.env.NEXT_PUBLIC_MEDIUM_USERNAME ?? '';
 
 const EXTERNAL_POSTS: BlogPost[] = [
   {
@@ -21,6 +19,8 @@ const EXTERNAL_POSTS: BlogPost[] = [
 ];
 
 async function fetchMediumPosts(): Promise<BlogPost[]> {
+  if (!MEDIUM_USERNAME) return [];
+
   try {
     const response = await fetch(
       `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${MEDIUM_USERNAME}`
@@ -32,14 +32,13 @@ async function fetchMediumPosts(): Promise<BlogPost[]> {
     }
 
     return data.items.map((item: any) => {
-      // Extract hero image from content
       const heroImageMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
       const heroImage = heroImageMatch ? heroImageMatch[1] : undefined;
 
       return {
         id: item.guid,
         title: item.title,
-        content: item.description.replace(/<[^>]*>/g, ''), // Remove HTML tags
+        content: item.description.replace(/<[^>]*>/g, ''),
         url: item.link,
         publishedAt: item.pubDate,
         heroImage,
@@ -55,40 +54,9 @@ async function fetchMediumPosts(): Promise<BlogPost[]> {
   }
 }
 
-export interface Tweet {
-  id: string;
-  text: string;
-  created_at: string;
-  author: {
-    name: string;
-    username: string;
-    profile_image_url: string;
-  };
-}
-
-// Convert Tweet to BlogPost format
-function convertTweetToBlogPost(tweet: Tweet): BlogPost {
-  const title =
-    tweet.text.length > 60 ? tweet.text.substring(0, 57) + '...' : tweet.text;
-
-  return {
-    id: `tweet-${tweet.id}`,
-    title: title,
-    content: tweet.text,
-    url: `https://twitter.com/${tweet.author.username}/status/${tweet.id}`,
-    publishedAt: tweet.created_at,
-    author: {
-      name: tweet.author.name,
-      handle: tweet.author.username,
-      avatar: tweet.author.profile_image_url
-    }
-  };
-}
-
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const mediumPosts = await fetchMediumPosts();
 
-  // Combine Medium posts with external posts and sort by date
   const allPosts = [...mediumPosts, ...EXTERNAL_POSTS];
 
   return allPosts.sort(

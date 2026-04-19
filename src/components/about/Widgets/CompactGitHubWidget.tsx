@@ -2,13 +2,19 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useGitHub } from '@/hooks/useGithub';
+import type { GitHubData } from '@/hooks/useGithub';
 
-/**
- * Compact GitHub activity widget for sidebar display
- */
-export default function CompactGitHubWidget() {
-  const { githubData, isLoading, error } = useGitHub();
+interface Props {
+  githubData: GitHubData | null;
+  isLoading: boolean;
+  error: string | null;
+}
+
+export default function CompactGitHubWidget({
+  githubData,
+  isLoading,
+  error
+}: Props) {
 
   if (error) {
     return null;

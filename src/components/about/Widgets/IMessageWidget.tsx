@@ -46,16 +46,6 @@ const questionsByStep: Record<
   extra: 'thanks 🙏 anything else you wanna tell me?'
 };
 
-let messageIdCounter = 1;
-
-function createMessage(text: string, side: MessageSide): IMessage {
-  return {
-    id: messageIdCounter++,
-    text,
-    side
-  };
-}
-
 export default function IMessageWidget() {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [step, setStep] = useState<ConversationStep>('intro');
@@ -69,7 +59,17 @@ export default function IMessageWidget() {
     extra: ''
   });
 
+  const messageIdCounterRef = useRef(1);
+  const formDataRef = useRef(formData);
+  formDataRef.current = formData;
+
   const messagesRef = useRef<HTMLDivElement | null>(null);
+
+  const createMessage = (text: string, side: MessageSide): IMessage => ({
+    id: messageIdCounterRef.current++,
+    text,
+    side
+  });
 
   useEffect(() => {
     // kick off the conversation with the first incoming message
@@ -103,7 +103,9 @@ export default function IMessageWidget() {
     }
 
     if (step === 'extra') {
-      setFormData((prev) => ({ ...prev, extra: text }));
+      const nextForm = { ...formData, extra: text };
+      formDataRef.current = nextForm;
+      setFormData(nextForm);
       finishConversation();
     }
   };
@@ -140,14 +142,15 @@ export default function IMessageWidget() {
 
     // trigger an email draft with the collected data
     try {
+      const latest = formDataRef.current;
       const subject = 'New message from your portfolio iMessage widget';
       const bodyLines = [
-        `What they wrote first: ${formData.topic}`,
+        `What they wrote first: ${latest.topic}`,
         '',
-        `How to reach them: ${formData.contact || '—'}`,
+        `How to reach them: ${latest.contact || '—'}`,
         '',
         `Extra details:`,
-        formData.extra || '—'
+        latest.extra || '—'
       ];
 
       const body = bodyLines.join('\n');

@@ -110,34 +110,32 @@ export default function JourneyTimeline() {
   const itemsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
+    const container = containerRef.current;
     const items = itemsRef.current;
-    if (!items.length) return;
+    if (!container || !items.length) return;
 
-    items.forEach((item, i) => {
-      gsap.fromTo(
-        item,
-        {
-          opacity: 0,
-          y: 40
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse'
-          },
-          delay: i * 0.05
-        }
-      );
-    });
+    const ctx = gsap.context(() => {
+      items.forEach((item, i) => {
+        gsap.fromTo(
+          item,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: item,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse'
+            },
+            delay: i * 0.05
+          }
+        );
+      });
+    }, container);
 
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (

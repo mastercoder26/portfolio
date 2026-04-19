@@ -42,6 +42,7 @@ export default function About() {
     error: githubError
   } = useGitHub();
 
+
   return (
     <div className="relative overflow-hidden">
       <Layout title="About Me">
@@ -206,10 +207,18 @@ export default function About() {
                 <div className="min-w-0 lg:col-span-1">
                   <div className="space-y-4 lg:sticky lg:top-32">
                     <AnimatedSection animation="fade-up">
-                      <CompactGitHubWidget />
+                      <CompactGitHubWidget
+                        githubData={githubData}
+                        isLoading={githubLoading}
+                        error={githubError}
+                      />
                     </AnimatedSection>
                     <AnimatedSection animation="fade-up">
-                      <OpenSourceShowcase />
+                      <OpenSourceShowcase
+                        githubData={githubData}
+                        isLoading={githubLoading}
+                        error={githubError}
+                      />
                     </AnimatedSection>
                     <AnimatedSection animation="fade-up">
                       <IMessageWidget />

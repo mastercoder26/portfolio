@@ -5,14 +5,23 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import { useScrollDots } from '@/hooks/useScrollDots';
-import { useGitHub } from '@/hooks/useGithub';
+import type { GitHubData } from '@/hooks/useGithub';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function OpenSourceShowcase() {
+interface Props {
+  githubData: GitHubData | null;
+  isLoading: boolean;
+  error: string | null;
+}
+
+export default function OpenSourceShowcase({
+  githubData,
+  isLoading,
+  error
+}: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const { githubData, isLoading, error } = useGitHub();
 
   const repos = githubData?.repos ?? [];
   const DOT_COUNT = Math.min(repos.length, 5);
