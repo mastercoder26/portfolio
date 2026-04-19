@@ -31,11 +31,13 @@ export default function RootTemplate({ children }: PropsWithChildren) {
   }
 
   useEffect(() => {
-    setTimeout(() => {
+    const id = window.setTimeout(() => {
       setIsLoading(false);
       document.body.style.cursor = 'default';
-      window.scrollTo(0, 0);
+      // Do not call scrollTo here: users who scroll before the preloader finishes
+      // would be snapped back to the top when this timeout fires (~800ms).
     }, 800);
+    return () => window.clearTimeout(id);
   }, []);
 
   return (

@@ -21,12 +21,16 @@ export const useSpotify = () => {
       setIsLoading(true);
       try {
         const response = await fetch('/api/spotify-top-tracks');
+        const data = await response.json().catch(() => ({}));
         if (!response.ok) {
-          throw new Error('Failed to fetch top tracks');
+          const msg =
+            typeof data.error === 'string'
+              ? data.error
+              : `Failed to fetch top tracks (${response.status})`;
+          throw new Error(msg);
         }
-        const data = await response.json();
-        setTopTracks(data.topTracks);
-        setTopArtists(data.topArtists);
+        setTopTracks(data.topTracks ?? []);
+        setTopArtists(data.topArtists ?? []);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
       } finally {
