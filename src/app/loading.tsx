@@ -1,22 +1,13 @@
-'use client';
+import React from 'react';
 
-import React, { useEffect, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import PreLoader from '@/components/animations/preLoader';
-
+/**
+ * Keep route-level loading lightweight.
+ *
+ * Page transitions are already handled by `app/template.tsx`.
+ * A second full-screen preloader here caused a black flash and, due to a
+ * timer/scroll reset, could yank users back to the top while they were
+ * already scrolling on the destination page.
+ */
 export default function Loading() {
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    (async () => {
-      setTimeout(() => {
-        setIsLoading(false);
-        document.body.style.cursor = 'default';
-        window.scrollTo(0, 0);
-      }, 2000);
-    })();
-  }, [isLoading]);
-
-  return (
-    <AnimatePresence mode="wait">{isLoading && <PreLoader />}</AnimatePresence>
-  );
+  return null;
 }

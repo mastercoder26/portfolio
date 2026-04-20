@@ -8,7 +8,6 @@ import { Analytics } from '@vercel/analytics/next';
 import { Toaster } from '@/components/ui/toaster';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import ProximityPrefetcher from '@/components/layout/ProximityPrefetcher';
-import { ThemeProvider } from '@/components/theme-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -64,25 +63,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="overflow-scroll overflow-x-hidden" suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <SpeedInsights />
-          <Animations>
-            <div>
-              <ProximityPrefetcher />
-              <Header />
-              <div className="flex flex-col bg-background text-foreground">
-                <main className={`flex-grow ${inter.className}`}>{children}</main>
-                <Analytics />
-              </div>
-              <Toaster />
+        <SpeedInsights />
+        <Animations>
+          <div>
+            <ProximityPrefetcher />
+            <Header />
+            <div className="flex flex-col bg-background text-foreground">
+              <main className={`flex-grow ${inter.className}`}>{children}</main>
+              <Analytics />
             </div>
-          </Animations>
-        </ThemeProvider>
+            <Toaster />
+          </div>
+        </Animations>
       </body>
     </html>
   );

@@ -24,13 +24,16 @@ export default function PreLoader() {
   }, []);
 
   useEffect(() => {
-    if (index == words.length - 1) return;
-    setTimeout(
+    if (index === words.length - 1) return;
+
+    const timeoutId = window.setTimeout(
       () => {
-        setIndex(index + 1);
+        setIndex((previousIndex) => previousIndex + 1);
       },
-      index == 0 ? 1000 : 150
+      index === 0 ? 1000 : 150
     );
+
+    return () => window.clearTimeout(timeoutId);
   }, [index]);
 
   const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
