@@ -19,7 +19,7 @@ export default function Layout({
       <div className={clsx('pb-14', center ? 'text-center' : '')}>
         <h1
           className={clsx(
-            'text-3xl font-medium lg:text-[10rem]',
+            'text-3xl font-medium leading-[0.95] tracking-tight lg:text-[10rem]',
             center ? 'items-center' : ''
           )}
         >
@@ -28,7 +28,7 @@ export default function Layout({
         {subtitle && (
           <p
             className={clsx(
-              'mt-4 text-lg text-foreground/70 sm:text-xl lg:mt-6 lg:text-2xl',
+              'mt-6 max-w-3xl text-lg text-foreground/70 sm:mt-8 sm:text-xl lg:mt-10 lg:text-2xl',
               center ? 'mx-auto max-w-2xl' : ''
             )}
           >

@@ -53,7 +53,7 @@ export default function Header() {
         ref={header}
         className="absolute top-0 z-20 box-border flex w-full items-center p-4 font-light text-white mix-blend-difference lg:p-8"
       >
-        <div className="flex lg:pr-56">
+        <div className="flex shrink-0 lg:pr-12">
           <Link
             href={'/'}
             prefetch={false}
@@ -97,41 +97,55 @@ export default function Header() {
           </Link>
         </div>
         {!isMobile() && (
-          <div className="flex flex-1 items-center justify-between font-semibold">
-            <div className="group relative z-10 flex cursor-pointer flex-col p-3">
-              <div className="flex flex-col">
-                <Magnetic>
-                  <Link href={'/about'} prefetch={false}>
-                    About
-                  </Link>
-                </Magnetic>
-                <Magnetic>
-                  <Link href={'/projects'} prefetch={false}>
-                    Projects
-                  </Link>
-                </Magnetic>
+          <nav
+            className="relative z-10 flex min-w-0 flex-1 flex-row flex-nowrap items-center justify-end gap-x-6 p-3 font-semibold md:gap-x-8 lg:gap-x-10"
+            aria-label="Main"
+          >
+            <Magnetic>
+              <Link
+                href={'/about'}
+                prefetch={false}
+                className="cursor-pointer whitespace-nowrap"
+              >
+                About
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <Link
+                href={'/now'}
+                prefetch={false}
+                className="cursor-pointer whitespace-nowrap"
+              >
+                Now
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <Link
+                href={'/projects'}
+                prefetch={false}
+                className="cursor-pointer whitespace-nowrap"
+              >
+                Projects
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <Link
+                href={'/blog'}
+                prefetch={false}
+                className="cursor-pointer whitespace-nowrap"
+              >
+                Blog
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <div className="flex cursor-pointer items-center gap-0.5 whitespace-nowrap">
+                <Link href={'/contact'} prefetch={false}>
+                  Contact
+                </Link>
+                <ArrowUpRight size={18} />
               </div>
-            </div>
-            <div className="group relative z-10 flex cursor-pointer flex-col p-3">
-              <div className="flex flex-col">
-                <Magnetic>
-                  <Link href={'/blog'} prefetch={false}>
-                    Blog
-                  </Link>
-                </Magnetic>
-              </div>
-            </div>
-            <div className="group relative z-10 flex cursor-pointer flex-col p-3">
-              <Magnetic>
-                <div className="flex">
-                  <Link href={'/contact'} prefetch={false}>
-                    Contact
-                  </Link>
-                  <ArrowUpRight size={18} />
-                </div>
-              </Magnetic>
-            </div>
-          </div>
+            </Magnetic>
+          </nav>
         )}
       </div>
       {!isMobile() && (

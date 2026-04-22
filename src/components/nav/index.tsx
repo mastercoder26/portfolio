@@ -14,6 +14,10 @@ const links = [
     href: '/about'
   },
   {
+    title: 'Now',
+    href: '/now'
+  },
+  {
     title: 'projects',
     href: '/projects'
   },

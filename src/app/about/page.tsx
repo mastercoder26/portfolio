@@ -10,12 +10,8 @@ import Layout from '@/components/layout';
 import AnimatedSection from '@/components/about/AnimatedSection';
 import TextReveal from '@/components/about/TextReveal';
 import ContrastCursor from '@/components/animations/cursor/contrastCursor';
-import RoundedButton from '@/components/animations/roundedButton';
 import CourseDropdownGroup from '@/components/about/CourseDropdownGroup';
 
-const JourneyTimeline = dynamic(
-  () => import('@/components/about/JourneyTimeline')
-);
 const SpotifyTopTracks = dynamic(
   () => import('@/components/about/SpotifyTopTracks')
 );
@@ -103,29 +99,23 @@ export default function About() {
                     small developer‑relations‑style community for student
                     builders. I thrive at the intersection of technical depth,
                     creative problem‑solving, and community building, and I’m
-                    always looking for new ways to learn, ship, and share.
+                    always looking for new ways to learn, ship, and share.{' '}
+                    <Link href="/now" className="text-primary hover:underline">
+                      Here&apos;s a running list
+                    </Link>{' '}
+                    of competitions, builds, and other things I&apos;m in the
+                    middle of.
                   </p>
                 </div>
               </AnimatedSection>
             </div>
           </section>
-          {/* Journey Section - split layout with widgets, inside card */}
+          {/* Education + widgets */}
           <section className="py-16">
             <AnimatedSection animation="fade-up">
-              <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
-                <h2 className="text-xl font-bold text-foreground sm:text-2xl">
-                  What I&apos;ve Been Doing
-                </h2>
-              </div>
-
               <div className="grid gap-4 lg:grid-cols-2">
-                {/* Timeline - takes 2/3 width */}
                 <div className="min-w-0 lg:col-span-1">
-                  <div className="rounded-2xl border border-foreground/5 bg-card p-6 shadow-sm sm:p-8">
-                    <JourneyTimeline />
-                  </div>
-                  {/* Education Section */}
-                  <section className="py-16">
+                  <section className="py-0">
                     <AnimatedSection animation="fade-up">
                       <div className="rounded-2xl border border-foreground/5 bg-card p-6 shadow-sm sm:p-8">
                         <h2 className="mb-4 text-xl font-bold text-foreground sm:text-2xl">
