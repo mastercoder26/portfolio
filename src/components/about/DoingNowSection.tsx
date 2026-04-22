@@ -34,8 +34,8 @@ const doingNowItems: DoingNowItem[] = [
     ],
     detail: [
       'My partner and I study a detailed ethics case, agree on a position, and produce a written analysis. At state we also present and respond to judges. Our brief placed 2nd out of roughly thirty teams and earned a bid to the National Leadership Conference.',
-      'I also applied for the FBLA Wells Fargo scholarship and finished in the top ten of more than three hundred applicants, receiving $1,000. The result confirmed that our writing and delivery aligned with how the rubric is scored.',
-      'The event is closer to a written case combined with a mock board meeting than a standard classroom essay.'
+      'I also applied for the FBLA Wells Fargo scholarship and finished in the top ten of more than three hundred applicants, receiving $1,000. The result confirmed that my writing and delivery aligned with how the rubric is scored.',
+      
     ]
   },
   {
@@ -165,11 +165,12 @@ const doingNowItems: DoingNowItem[] = [
       'An extemporaneous speaking event: draw a current-events prompt, prepare in thirty minutes, then deliver a researched speech.',
     awards: [
       '1st, LC Anderson / Hendrickson swing, Sept 2025',
-      '#1 on our internal ranking, moved up to varsity mid year'
+      '1st, Dripping Springs, Dec 2025',
+      '1st in internal rankings'
     ],
     detail: [
       'From draw to speech is thirty minutes. In that time I locate sources, choose a defensible angle, and deliver a structured argument with cited evidence.',
-      'I took first at the Anderson / Hendrickson swing early in the 2025 season, which confirmed I can compress research without losing clarity.',
+      'I took first out of 35+ competitors at two tournaments I attended, which confirmed I can compress research without losing clarity.',
       'I compete in other speech and debate events as well. The core requirements are consistent: structure, evidence, and adjusting delivery to the room.'
     ]
   },
