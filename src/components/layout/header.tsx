@@ -98,7 +98,7 @@ export default function Header() {
         </div>
         {!isMobile() && (
           <nav
-            className="relative z-10 flex min-w-0 flex-1 flex-row flex-nowrap items-center justify-end gap-x-6 p-3 font-semibold md:gap-x-8 lg:gap-x-10"
+            className="relative z-10 flex min-w-0 flex-1 flex-row flex-nowrap items-center justify-end gap-x-6 p-3 font-semibold uppercase md:gap-x-8 lg:gap-x-10"
             aria-label="Main"
           >
             <Magnetic>
