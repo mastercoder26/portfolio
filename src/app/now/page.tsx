@@ -8,7 +8,7 @@ export default function NowPage() {
         title="Now"
         subtitle="A current list of what I am working on, competing in, and building. Open any card for the full context."
       >
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-5xl">
           <DoingNowSection />
         </div>
       </Layout>

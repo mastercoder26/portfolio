@@ -6,10 +6,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Magnetic from '@/components/animations/magnetic';
 
+type Category = 'competing' | 'building' | 'working' | 'community' | 'academic';
+
 export type DoingNowItem = {
   id: string;
   year: string;
-  highlight?: boolean;
+  category: Category;
   title: string;
   organization: string;
   organizationUrl?: string;
@@ -18,11 +20,24 @@ export type DoingNowItem = {
   detail: string[];
 };
 
+type CategorySection = {
+  id: Category;
+  label: string;
+};
+
+const categorySections: CategorySection[] = [
+  { id: 'competing', label: 'Competing' },
+  { id: 'building', label: 'Building' },
+  { id: 'working', label: 'Working' },
+  { id: 'community', label: 'Leading & Service' },
+  { id: 'academic', label: 'Academic' }
+];
+
 const doingNowItems: DoingNowItem[] = [
   {
     id: 'fbla',
     year: 'Now',
-    highlight: true,
+    category: 'competing',
     title: 'Business Ethics',
     organization: 'Rouse High School FBLA',
     short:
@@ -34,14 +49,14 @@ const doingNowItems: DoingNowItem[] = [
     ],
     detail: [
       'My partner and I study a detailed ethics case, agree on a position, and produce a written analysis. At state we also present and respond to judges. Our brief placed 2nd out of roughly thirty teams and earned a bid to the National Leadership Conference.',
-      'I also applied for the FBLA Wells Fargo scholarship and finished in the top ten of more than three hundred applicants, receiving $1,000. The result confirmed that my writing and delivery aligned with how the rubric is scored.',
-      
+      'I also applied for the FBLA Wells Fargo scholarship and finished in the top ten of more than three hundred applicants, receiving $1,000. The result confirmed that our writing and delivery aligned with how the rubric is scored.',
+      'The event is closer to a written case combined with a mock board meeting than a standard classroom essay.'
     ]
   },
   {
     id: 'deca',
     year: 'Now',
-    highlight: true,
+    category: 'competing',
     title: 'Business Law and Ethics, team decision',
     organization: 'DECA Inc.',
     short:
@@ -58,28 +73,9 @@ const doingNowItems: DoingNowItem[] = [
     ]
   },
   {
-    id: 'ventured',
-    year: 'Now',
-    highlight: true,
-    title: 'VentureEd, marketing and product',
-    organization: 'JammyChat',
-    organizationUrl: 'https://www.linkedin.com/company/ventured-education/',
-    short:
-      'Summer 2025 VenturEd cohort, placed at JammyChat, an AI and music product with a mental health focus.',
-    awards: [
-      'VenturEd Summer 2025',
-      'Jammy / Eric Davich team (ex-Google, Songza background)'
-    ],
-    detail: [
-      'VenturEd is a selective high school technology internship. I was assigned to JammyChat, so my work contributed to real growth and product decisions rather than a staged project.',
-      'My contributions included user research on onboarding, exploration of mood-based playlists, and a structured ambassador outreach plan to replace ad-hoc acquisition.',
-      'The cohort reflected what the early stages of a startup actually require, which was the outcome I wanted from the summer.'
-    ]
-  },
-  {
     id: 'usaco',
     year: 'Now',
-    highlight: true,
+    category: 'competing',
     title: 'Competitive programming',
     organization: 'USA Computing Olympiad (USACO)',
     short:
@@ -92,9 +88,43 @@ const doingNowItems: DoingNowItem[] = [
     ]
   },
   {
+    id: 'speech',
+    year: 'Now',
+    category: 'competing',
+    title: 'Extemp, speech and debate',
+    organization: 'NSDA / Rouse High School',
+    short:
+      'An extemporaneous speaking event: draw a current-events prompt, prepare in thirty minutes, then deliver a researched speech.',
+    awards: [
+      '1st, LC Anderson / Hendrickson swing, Sept 2025',
+      '#1 on our internal ranking, moved up to varsity mid year'
+    ],
+    detail: [
+      'From draw to speech is thirty minutes. In that time I locate sources, choose a defensible angle, and deliver a structured argument with cited evidence.',
+      'I took first at the Anderson / Hendrickson swing early in the 2025 season, which confirmed I can compress research without losing clarity.',
+      'I compete in other speech and debate events as well. The core requirements are consistent: structure, evidence, and adjusting delivery to the room.'
+    ]
+  },
+  {
+    id: 'nasa',
+    year: '2025',
+    category: 'competing',
+    title: 'NASA Space Apps Challenge',
+    organization: 'NASA',
+    organizationUrl: 'https://www.spaceappschallenge.org/',
+    short:
+      'Austin regional round of the NASA Space Apps Challenge. Our submission framed low-Earth orbit commercialization as a business problem rather than a concept poster.',
+    awards: ['Top 10 in Austin, about 200 teams'],
+    detail: [
+      'Our team built a case for how private actors could operate sustainably in LEO without skipping over the economics.',
+      'I led much of the research, narrative, and presentation, which drew on the same skills as extemp applied to a different subject.',
+      'Placing in the top ten from roughly two hundred teams in Austin indicated that the pitch landed with a technical audience.'
+    ]
+  },
+  {
     id: 'gradeview',
     year: 'Now',
-    highlight: true,
+    category: 'building',
     title: 'Gradeview',
     organization: 'Independent project',
     organizationUrl: 'https://gradeview.live',
@@ -113,7 +143,7 @@ const doingNowItems: DoingNowItem[] = [
   {
     id: 'ouracsv',
     year: 'Now',
-    highlight: true,
+    category: 'building',
     title: 'OuraCSV',
     organization: 'Independent project',
     organizationUrl: 'https://oura-rose.vercel.app/',
@@ -129,7 +159,7 @@ const doingNowItems: DoingNowItem[] = [
   {
     id: 'hourly',
     year: 'Now',
-    highlight: true,
+    category: 'building',
     title: 'Hourly',
     organization: 'Volunteer marketplace (in build)',
     short:
@@ -144,6 +174,7 @@ const doingNowItems: DoingNowItem[] = [
   {
     id: 'cac',
     year: 'Now',
+    category: 'building',
     title: 'Congressional App Challenge, Rediscover',
     organization: 'STEM and civic tech',
     short:
@@ -156,27 +187,28 @@ const doingNowItems: DoingNowItem[] = [
     ]
   },
   {
-    id: 'speech',
+    id: 'ventured',
     year: 'Now',
-    highlight: true,
-    title: 'Extemp, speech and debate',
-    organization: 'NSDA / Rouse High School',
+    category: 'working',
+    title: 'VentureEd, marketing and product',
+    organization: 'JammyChat',
+    organizationUrl: 'https://www.linkedin.com/company/ventured-education/',
     short:
-      'An extemporaneous speaking event: draw a current-events prompt, prepare in thirty minutes, then deliver a researched speech.',
+      'Summer 2025 VenturEd cohort, placed at JammyChat, an AI and music product with a mental health focus.',
     awards: [
-      '1st, LC Anderson / Hendrickson swing, Sept 2025',
-      '1st, Dripping Springs, Dec 2025',
-      '1st in internal rankings'
+      'VenturEd Summer 2025',
+      'Jammy / Eric Davich team (ex-Google, Songza background)'
     ],
     detail: [
-      'From draw to speech is thirty minutes. In that time I locate sources, choose a defensible angle, and deliver a structured argument with cited evidence.',
-      'I took first out of 35+ competitors at two tournaments I attended, which confirmed I can compress research without losing clarity.',
-      'I compete in other speech and debate events as well. The core requirements are consistent: structure, evidence, and adjusting delivery to the room.'
+      'VenturEd is a selective high school technology internship. I was assigned to JammyChat, so my work contributed to real growth and product decisions rather than a staged project.',
+      'My contributions included user research on onboarding, exploration of mood-based playlists, and a structured ambassador outreach plan to replace ad-hoc acquisition.',
+      'The cohort reflected what the early stages of a startup actually require, which was the outcome I wanted from the summer.'
     ]
   },
   {
     id: 'metricvoice',
     year: 'Now',
+    category: 'working',
     title: 'Research',
     organization: 'MetricVoice',
     organizationUrl: 'https://www.linkedin.com/company/metricvoice/',
@@ -190,23 +222,9 @@ const doingNowItems: DoingNowItem[] = [
     ]
   },
   {
-    id: 'nasa',
-    year: '25',
-    title: 'NASA Space Apps Challenge',
-    organization: 'NASA',
-    organizationUrl: 'https://www.spaceappschallenge.org/',
-    short:
-      'Austin regional round of the NASA Space Apps Challenge. Our submission framed low-Earth orbit commercialization as a business problem rather than a concept poster.',
-    awards: ['Top 10 in Austin, about 200 teams'],
-    detail: [
-      'Our team built a case for how private actors could operate sustainably in LEO without skipping over the economics.',
-      'I led much of the research, narrative, and presentation, which drew on the same skills as extemp applied to a different subject.',
-      'Placing in the top ten from roughly two hundred teams in Austin indicated that the pitch landed with a technical audience.'
-    ]
-  },
-  {
     id: 'stuco',
     year: 'Now',
+    category: 'community',
     title: 'Sophomore class vice president',
     organization: 'Rouse High School Student Council',
     short:
@@ -220,7 +238,8 @@ const doingNowItems: DoingNowItem[] = [
   },
   {
     id: 'camp',
-    year: '25',
+    year: '2025',
+    category: 'community',
     title: 'Camp counselor, Camp CAMP',
     organization: 'SPED summer camp',
     short:
@@ -235,7 +254,7 @@ const doingNowItems: DoingNowItem[] = [
   {
     id: 'academic',
     year: 'Now',
-    highlight: true,
+    category: 'academic',
     title: 'Tests and school stuff',
     organization: 'Rouse, SAT, UT',
     short:
@@ -280,7 +299,9 @@ function WiggleDetailButton({
           'transition-colors duration-300 hover:border-primary/40 hover:text-primary'
         )}
       >
-        <span className="relative z-10">{expanded ? 'Less detail' : 'More detail'}</span>
+        <span className="relative z-10">
+          {expanded ? 'Less detail' : 'More detail'}
+        </span>
       </motion.button>
     </Magnetic>
   );
@@ -291,118 +312,154 @@ export default function DoingNowSection() {
   const baseId = useId();
 
   return (
-    <div className="space-y-4 sm:space-y-5">
-      {doingNowItems.map((item, index) => {
-        const expanded = openId === item.id;
-        const panelId = `${baseId}-${item.id}-panel`;
+    <div className="space-y-14 sm:space-y-16">
+      {categorySections.map((section) => {
+        const items = doingNowItems.filter(
+          (item) => item.category === section.id
+        );
+        if (items.length === 0) return null;
 
         return (
-          <motion.article
-            key={item.id}
-            layout
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-12% 0px' }}
-            transition={{
-              delay: index * 0.05,
-              duration: 0.55,
-              ease: [0.22, 1, 0.36, 1]
-            }}
-            className={cn(
-              'overflow-hidden rounded-2xl border border-foreground/5 bg-card shadow-sm transition-shadow duration-300',
-              'hover:border-foreground/10 hover:shadow-md',
-              expanded && 'border-primary/20 shadow-md ring-1 ring-primary/10'
-            )}
-          >
-            <div className="grid gap-4 p-5 sm:grid-cols-[minmax(0,72px)_1fr] sm:gap-5 sm:p-7">
-              <div className="sm:pt-0.5">
-                <span
-                  className={cn(
-                    'inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide',
-                    item.highlight
-                      ? 'bg-primary/12 text-primary'
-                      : 'bg-foreground/5 text-foreground/60'
-                  )}
-                >
-                  {item.year}
-                </span>
-              </div>
+          <section key={section.id} className="space-y-5 sm:space-y-6">
+            <header className="flex items-baseline gap-4">
+              <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+                {section.label}
+              </h2>
+              <span
+                aria-hidden="true"
+                className="flex-1 border-b border-foreground/10"
+              />
+              <span className="text-xs font-medium uppercase tracking-wider text-foreground/40">
+                {items.length}
+              </span>
+            </header>
 
-              <div className="min-w-0 space-y-3">
-                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                  <h3 className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
-                    {item.title}
-                  </h3>
-                  {item.organizationUrl ? (
-                    <Link
-                      href={item.organizationUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-medium text-primary hover:underline"
-                    >
-                      @{item.organization} ↗
-                    </Link>
-                  ) : (
-                    <span className="text-sm font-medium text-foreground/45">
-                      @{item.organization}
-                    </span>
-                  )}
-                </div>
+            <div className="grid items-start gap-4 sm:gap-5 lg:grid-cols-2">
+              {items.map((item, index) => {
+                const expanded = openId === item.id;
+                const panelId = `${baseId}-${item.id}-panel`;
+                const isNow = item.year === 'Now';
 
-                <p className="max-w-2xl text-sm leading-relaxed text-foreground/70 sm:text-base">
-                  {item.short}
-                </p>
+                return (
+                  <motion.article
+                    key={item.id}
+                    layout
+                    initial={{ opacity: 0, y: 28 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-12% 0px' }}
+                    transition={{
+                      delay: index * 0.05,
+                      duration: 0.55,
+                      ease: [0.22, 1, 0.36, 1]
+                    }}
+                    className={cn(
+                      'overflow-hidden rounded-2xl border border-foreground/5 bg-card shadow-sm transition-shadow duration-300',
+                      'hover:border-foreground/10 hover:shadow-md',
+                      expanded &&
+                        'border-primary/20 shadow-md ring-1 ring-primary/10'
+                    )}
+                  >
+                    <div className="grid gap-4 p-5 sm:grid-cols-[minmax(0,72px)_1fr] sm:gap-5 sm:p-6 lg:p-6">
+                      <div className="sm:pt-0.5">
+                        <span
+                          className={cn(
+                            'inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide',
+                            isNow
+                              ? 'bg-primary/12 text-primary'
+                              : 'bg-foreground/5 text-foreground/60'
+                          )}
+                        >
+                          {item.year}
+                        </span>
+                      </div>
 
-                {item.awards.length > 0 && (
-                  <ul className="flex flex-wrap gap-2" aria-label="Awards and highlights">
-                    {item.awards.map((award) => (
-                      <li
-                        key={award}
-                        className="rounded-full border border-primary/15 bg-primary/8 px-3 py-1 text-xs font-semibold text-primary"
-                      >
-                        {award}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                      <div className="min-w-0 space-y-3">
+                        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                          <h3 className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+                            {item.title}
+                          </h3>
+                          {item.organizationUrl ? (
+                            <Link
+                              href={item.organizationUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm font-medium text-primary hover:underline"
+                            >
+                              @{item.organization} ↗
+                            </Link>
+                          ) : (
+                            <span className="text-sm font-medium text-foreground/45">
+                              @{item.organization}
+                            </span>
+                          )}
+                        </div>
 
-                <div className="flex flex-wrap items-center gap-3 pt-1">
-                  <WiggleDetailButton
-                    expanded={expanded}
-                    panelId={panelId}
-                    onClick={() => setOpenId(expanded ? null : item.id)}
-                  />
-                </div>
+                        <p className="max-w-2xl text-sm leading-relaxed text-foreground/70 sm:text-base">
+                          {item.short}
+                        </p>
 
-                <AnimatePresence initial={false}>
-                  {expanded && (
-                    <motion.div
-                      id={panelId}
-                      role="region"
-                      aria-labelledby={`${panelId}-trigger`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <motion.div
-                        initial={{ y: -8 }}
-                        animate={{ y: 0 }}
-                        exit={{ y: -6 }}
-                        transition={{ duration: 0.28 }}
-                        className="space-y-3 border-t border-foreground/10 pt-4 text-sm leading-relaxed text-foreground/75 sm:text-[0.95rem]"
-                      >
-                        {item.detail.map((paragraph, i) => (
-                          <p key={i}>{paragraph}</p>
-                        ))}
-                      </motion.div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                        {item.awards.length > 0 && (
+                          <ul
+                            className="flex flex-wrap gap-2"
+                            aria-label="Awards and highlights"
+                          >
+                            {item.awards.map((award) => (
+                              <li
+                                key={award}
+                                className="rounded-full border border-primary/15 bg-primary/8 px-3 py-1 text-xs font-semibold text-primary"
+                              >
+                                {award}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+
+                        <div className="flex flex-wrap items-center gap-3 pt-1">
+                          <WiggleDetailButton
+                            expanded={expanded}
+                            panelId={panelId}
+                            onClick={() =>
+                              setOpenId(expanded ? null : item.id)
+                            }
+                          />
+                        </div>
+
+                        <AnimatePresence initial={false}>
+                          {expanded && (
+                            <motion.div
+                              id={panelId}
+                              role="region"
+                              aria-labelledby={`${panelId}-trigger`}
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{
+                                duration: 0.38,
+                                ease: [0.22, 1, 0.36, 1]
+                              }}
+                              className="overflow-hidden"
+                            >
+                              <motion.div
+                                initial={{ y: -8 }}
+                                animate={{ y: 0 }}
+                                exit={{ y: -6 }}
+                                transition={{ duration: 0.28 }}
+                                className="space-y-3 border-t border-foreground/10 pt-4 text-sm leading-relaxed text-foreground/75 sm:text-[0.95rem]"
+                              >
+                                {item.detail.map((paragraph, i) => (
+                                  <p key={i}>{paragraph}</p>
+                                ))}
+                              </motion.div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                  </motion.article>
+                );
+              })}
             </div>
-          </motion.article>
+          </section>
         );
       })}
     </div>
