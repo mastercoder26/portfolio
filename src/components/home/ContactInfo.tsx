@@ -138,7 +138,7 @@ export default function ContactInfo() {
             </span>
             <Magnetic>
               <Link
-                href="https://github.com/AkhilKonduru1"
+                href="https://github.com/mastercoder26"
                 className={animatedUnderlineStyle}
               >
                 Github
@@ -158,7 +158,7 @@ export default function ContactInfo() {
           <p className="text-sm text-inverse-muted">
             Thanks Bettina Sosa for the website inspiration -{'>'}{' '}
             <a
-              href="https://github.com/bettinasosa/portfolio"
+              href="https://github.com/mastercoder26"
               target="_blank"
               rel="noopener noreferrer"
               className="underline transition-colors hover:text-inverse-foreground"

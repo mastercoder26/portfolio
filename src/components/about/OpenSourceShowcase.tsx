@@ -72,7 +72,7 @@ export default function OpenSourceShowcase({
           <p className="text-xs text-foreground/50">Templates & repos</p>
         </div>
         <Link
-          href="https://github.com/AkhilKonduru1"
+          href="https://github.com/mastercoder26"
           target="_blank"
           rel="noopener noreferrer"
           className="group flex items-center gap-1.5 rounded-full border border-foreground/10 px-2.5 py-1 text-[11px] text-foreground/70 transition-all hover:border-foreground/30 hover:text-foreground"
